@@ -1,8 +1,12 @@
-# React + Vite
+# Image Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## A project created in React to help me learn programming.
 
-Currently, two official plugins are available:
+To view the site, click [here](https://justclaner.github.io/image-gallery/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Hooks used:
+
+- useState
+- useEffect
+- useRef
+- useContext
