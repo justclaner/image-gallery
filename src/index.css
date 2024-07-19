@@ -28,8 +28,11 @@ body {
 }
 
 .image-name {
-  width: 300px;
+  display:block;
+  width: 90%;
   margin: 0 auto;
+  text-align: center;
+  border-radius: 10px;
 }
 img {
   /* height: calc(var(--galleryHeight)*0.5); */
