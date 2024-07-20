@@ -45,6 +45,18 @@ const deleteImage = () => {
   setImageSelected(-1);
 }
 
+//
+// useEffect(()=>{
+//   const resetSelector = () => {
+//     setImageSelected(-1);
+//   }
+//   document.body.addEventListener("click",resetSelector);
+//   return () => {
+//     document.body.removeEventListener("click",resetSelector);
+//   }
+// },[])
+
+
 //move images around
 useEffect(()=>{
  if(!dragEnded) {return;} //user has not dropped yet

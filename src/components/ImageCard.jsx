@@ -6,7 +6,13 @@ const imageContext = useContext(ImageContext);
 
 return(
     <div className="image-container" id={id} 
-    onClick={()=>{imageContext.setImageSelected(id);}}
+    onClick={()=>{
+        if(imageContext.imageSelected != id) {
+        imageContext.setImageSelected(id);
+        } else {
+            imageContext.setImageSelected(-1);
+        }
+    }}
     draggable="true"
     style={{border: (imageContext.imageSelected == id )? "5px solid red" : "5px solid black"}}
     onDrag={()=>{
