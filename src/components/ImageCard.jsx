@@ -14,7 +14,7 @@ return(
         }
     }}
     draggable="true"
-    style={{border: (imageContext.imageSelected == id )? "5px solid red" : "5px solid black"}}
+    style={{border: (imageContext.imageSelected == id )? "3px solid #ee6c4d" : "3px solid black"}}
     onDrag={()=>{
         let index = -1;
         for (let i = 0; i < imageContext.imageList.length; i++) {
@@ -35,7 +35,7 @@ return(
         imageContext.setMoveIds([imageContext.moveIds[0],index]);
     }}
         >
-    <img src={img} id={id} draggable="false" style={imageContext.imageSelected == id ? {borderBottom: "3px solid red"} : {borderBottom: "3px solid black"}}
+    <img src={img} id={id} draggable="false" style={imageContext.imageSelected == id ? {borderBottom: "3px solid #ee6c4d"} : {borderBottom: "3px solid black"}}
     /> <br />
     <input type="text" className="image-name" defaultValue={name.length > 30 ? name.slice(0,25) + "..." + name.slice(-4) : name}/>
     <textarea name="" defaultValue={desc} ></textarea>

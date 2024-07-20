@@ -9,8 +9,12 @@ const [imageSelected,setImageSelected] = useState(-1);
 const [moveIds,setMoveIds] = useState([-1,-1]);
 const [moveImage,setMoveImage] = useState(null);
 const [dragEnded, setDragEnded] = useState(true);
-
+const [popupClass, setPopupClass] = useState("popupText");
+const popupDuration = 2;
+document.querySelector(":root").style.setProperty("--popupDuration",`${popupDuration}s`);
 const imageUpload = useRef(null);
+const imageUploadPopup = useRef(null);
+
 
 const imageSubmit = () => {
 imageUpload.current.click();
@@ -23,11 +27,19 @@ const imageDisplay = () => {
     const imgTest = new Image();
     imgTest.src = fileReader.result;
     imgTest.onload = () => {
+      if(imgTest.width/imgTest.height < 0.5) {
+        setPopupClass("popupText popupText-animation");
+        setTimeout (()=>{
+          setPopupClass("popupText");
+        },popupDuration*1000);
+        return;
+        } 
       console.log(imgTest.width + " " + imgTest.height);
       let filename = imageUpload.current.files[imageUpload.current.files.length-1].name;
       let newImage = [0];
   
       setImageList([...imageList,...newImage.map(obj=> <ImageCard img={fileReader.result} name={filename} key={imageList.length} id={imageList.length}></ImageCard> )]);
+        
     }
 
 
@@ -69,10 +81,14 @@ useEffect(()=>{
     <h1>Image Gallery Scroller</h1>
     <Gallery  getImageList={setImageList} imageList={imageList}/>
     <br />
-    <button onClick={imageSubmit}>Upload Image</button> 
+    <button onClick={imageSubmit}>Upload Image
+      <span className={popupClass} ref={imageUploadPopup}>Image aspect ratio must be greater than 1:2</span>
+      </button> 
     <button onClick={deleteImage}>Delete</button> 
     <button onClick={clearAll}>Clear All</button>
     <input type="file" accept="image/*" ref={imageUpload} onChange={imageDisplay} style={{display: "none"}} />
+    <br />
+    <p>Upload some images to get started!</p>
     </ImageContext.Provider>
   )
 }
