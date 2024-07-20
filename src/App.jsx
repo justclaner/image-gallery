@@ -4,7 +4,6 @@ export const ImageContext = createContext(null);
 import ImageCard from './components/ImageCard.jsx'
 function App() {
 
-
 const [imageList, setImageList] = useState([]);
 const [imageSelected,setImageSelected] = useState(-1);
 const [moveIds,setMoveIds] = useState([-1,-1]);
@@ -45,6 +44,11 @@ const deleteImage = () => {
   setImageSelected(-1);
 }
 
+const clearAll = () => {
+  setImageList([]);
+  setImageSelected(-1);
+}
+
 //move images around
 useEffect(()=>{
  if(!dragEnded) {return;} //user has not dropped yet
@@ -67,7 +71,7 @@ useEffect(()=>{
     <br />
     <button onClick={imageSubmit}>Upload Image</button> 
     <button onClick={deleteImage}>Delete</button> 
-    <button>Clear All</button>
+    <button onClick={clearAll}>Clear All</button>
     <input type="file" accept="image/*" ref={imageUpload} onChange={imageDisplay} style={{display: "none"}} />
     </ImageContext.Provider>
   )
