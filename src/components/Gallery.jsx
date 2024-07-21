@@ -22,7 +22,7 @@ function Gallery(props) {
         {
             url:"https://cdn.mos.cms.futurecdn.net/TWpr5dTCno77m2J2aFgLxD-1200-80.jpg",
             name:"Saturn",
-            desc:"The sixth and second largest planet in the Solar System. It is named by the romans and has ties with the Greek Goddess Cronus."
+            desc:"The sixth and second largest planet in the Solar System. It is named by the Romans and has ties with the Greek Goddess Cronus."
         },
         {
             url:"https://s3.amazonaws.com/cms.ipressroom.com/173/files/20234/6463d4762cfac278e4de37ac_Megalodon+illustration+Alex+Boersma+PNAS/Megalodon+illustration+Alex+Boersma+PNAS_af2c6cef-9f5d-4dc6-b307-1f18174f7181-prv.jpg",

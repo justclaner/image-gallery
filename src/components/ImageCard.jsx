@@ -47,8 +47,7 @@ Image.propTypes = {
     src: PropTypes.string,
     name: PropTypes.string,
     desc: PropTypes.string,
-    id: PropTypes.number,
-    selected: PropTypes.number
+    id: PropTypes.number
 }
 
 export default Image;
