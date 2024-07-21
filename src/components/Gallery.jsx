@@ -1,11 +1,8 @@
 import Image from './ImageCard.jsx'
-import {useState, useRef, useEffect, useContext} from 'react';
-import {ImageContext} from '../App.jsx'
+import {useRef, useEffect} from 'react';
 
 
 function Gallery(props) {
-    const imageContext = useContext(ImageContext);
-    const [mouseX,setMouseX] = useState(0);
     const initial = [
         {
             url:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg/1200px-Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg",
@@ -47,21 +44,6 @@ const gallery = useRef(null);
 
 const scroll = (event) => {
     gallery.current.scrollLeft += event.deltaY;
-    console.log(event.deltaY);
-    // console.log(gallery.current.clientWidth);
-    // console.log(document.body.clientWidth);
-}
-
-const mouseDrag = (event) => {
-    const bodyWidth = document.body.clientWidth;
-    const mouseX = event.clientX;
-    const scrollAmount = 5;
-    if(mouseX > bodyWidth*0.05 && mouseX < bodyWidth*0.15) {
-        gallery.current.scrollLeft -= scrollAmount;
-       
-    } else if (mouseX > bodyWidth*0.9 && mouseX < bodyWidth*0.95) {
-        gallery.current.scrollLeft += scrollAmount;
-    }
 }
 
 
@@ -72,7 +54,7 @@ useEffect(()=>{
 
 
     return(
-        <div className="gallery" onWheel={scroll} onDragOver={mouseDrag} ref={gallery}>
+        <div className="gallery" onWheel={scroll} ref={gallery}>
         {imageList}
         </div>
     );

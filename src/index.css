@@ -10,13 +10,12 @@ body {
 
 .gallery {
   margin: 0 auto;
-  border: 1px solid black;
-  border-radius: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
   width: 90%;
   height: var(--galleryHeight);
   display:flex;
   align-items: center;
-  /* justify-content:space-evenly; */
   overflow-x:auto;
   background-color: #3d5a80;
   padding-left: 10px;
@@ -114,4 +113,14 @@ textarea {
 }
 textarea:focus {
  outline: none;
+}
+
+::-webkit-scrollbar {
+height: 25px;
+}
+
+::-webkit-scrollbar-thumb {
+background: #293241;
+border: 5px solid #3d5a80;
+border-radius: 15px;
 }

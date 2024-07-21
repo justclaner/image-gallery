@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import {useState, useContext, useRef} from 'react'
+import {useContext} from 'react'
 import {ImageContext} from '../App.jsx'
 export function Image({img, name = "Random Name", desc = "Random Description", id}) {
 const imageContext = useContext(ImageContext);
@@ -17,7 +17,7 @@ return(
         >
     <img src={img} id={id} style={imageContext.imageSelected == id ? {borderBottom: "3px solid #ee6c4d"} : {borderBottom: "3px solid black"}}
     draggable="true"
-    onDrag={(event)=>{
+    onDrag={()=>{
         let index = -1;
         for (let i = 0; i < imageContext.imageList.length; i++) {
             if (imageContext.imageList[i].props.id == id) {index = i; break;}
@@ -38,7 +38,7 @@ return(
     }}
     /> <br />
     <input type="text" className="image-name" defaultValue={name}/>
-    <textarea name="" defaultValue={desc} ></textarea>
+    <textarea defaultValue={desc} ></textarea>
     </div>
 )
 }
