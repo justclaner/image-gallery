@@ -1,7 +1,6 @@
 import Image from './ImageCard.jsx'
 import {useRef, useEffect} from 'react';
 
-
 function Gallery(props) {
     const initial = [
         {
@@ -36,25 +35,17 @@ function Gallery(props) {
         }
     ]
 
+//create initial images
 const initialImages = initial.map((obj,index)=><Image img={obj.url} name={obj.name} desc={obj.desc} key={index} id={index}></Image>);
-
 const imageList = props.imageList;
-
 const gallery = useRef(null);
-
-const scroll = (event) => {
-    gallery.current.scrollLeft += event.deltaY;
-}
-
-
 
 useEffect(()=>{
     props.getImageList([...initialImages]);
  },[])
 
-
     return(
-        <div className="gallery" onWheel={scroll} ref={gallery}>
+        <div className="gallery" onWheel={(e) => {gallery.current.scrollLeft += e.deltaY;}} ref={gallery}>
         {imageList}
         </div>
     );

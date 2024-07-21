@@ -33,6 +33,12 @@ body {
   transition: 0.1s;
 }
 
+.instructions {
+  width: 50%;
+  margin: 20px auto;
+  font-size: 20px;
+}
+
 .image-name {
   display:block;
   width: 90%;
@@ -115,11 +121,11 @@ textarea:focus {
  outline: none;
 }
 
-::-webkit-scrollbar {
+div::-webkit-scrollbar {
 height: 25px;
 }
 
-::-webkit-scrollbar-thumb {
+div::-webkit-scrollbar-thumb {
 background: #293241;
 border: 5px solid #3d5a80;
 border-radius: 15px;
