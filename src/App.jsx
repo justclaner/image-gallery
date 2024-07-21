@@ -34,7 +34,7 @@ const imageDisplay = () => {
         },popupDuration*1000);
         return;
         } 
-      console.log(imgTest.width + " " + imgTest.height);
+   
       let filename = imageUpload.current.files[imageUpload.current.files.length-1].name;
       let newImage = [0];
   
@@ -77,9 +77,9 @@ useEffect(()=>{
 
 
   return (
-    <ImageContext.Provider value={{imageSelected,setImageSelected,imageList,setImageList,moveIds,setMoveIds,setMoveImage, setDragEnded}}>
+    <ImageContext.Provider value={{imageSelected,setImageSelected,imageList,setImageList,moveIds,setMoveIds,setMoveImage,dragEnded,setDragEnded}}>
     <h1>Image Gallery Scroller</h1>
-    <Gallery  getImageList={setImageList} imageList={imageList}/>
+    <Gallery  getImageList={setImageList} imageList={imageList} dragEnded={dragEnded}/>
     <br />
     <button onClick={imageSubmit}>Upload Image
       <span className={popupClass} ref={imageUploadPopup}>Image aspect ratio must be greater than 1:2</span>

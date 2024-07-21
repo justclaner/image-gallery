@@ -1,12 +1,45 @@
 import Image from './ImageCard.jsx'
-import {useState, useRef, useEffect} from 'react';
+import {useState, useRef, useEffect, useContext} from 'react';
+import {ImageContext} from '../App.jsx'
 
 
 function Gallery(props) {
-const initialUrls = ["https://pics.craiyon.com/2023-11-04/445a2f0ac518410fac24c2ae3980787b.webp","https://pbs.twimg.com/media/FO35aoHXMAIceaL.jpg",
-    "https://i0.wp.com/digital-photography-school.com/wp-content/uploads/2013/08/1.-Moraine_final.jpg?w=600&h=1260&ssl=1",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg/1200px-Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg"];
-const initialImages = initialUrls.map((url,index)=><Image img={url} name="Sample File Name" desc={"Sample Image Description.\nClick to edit!"} key={index} id={index}></Image>);
+    const imageContext = useContext(ImageContext);
+    const [mouseX,setMouseX] = useState(0);
+    const initial = [
+        {
+            url:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg/1200px-Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg",
+            name:"Mount Everest",
+            desc:"The tallest mountain in the world with an elevation of 29,000 feet located in the Himalayas. Around 6.5% of climbers die while trying to reach the top."
+        },
+        {
+            url:"https://www.niagarafallsstatepark.com/~/media/parks/niagara-falls/niagara-falls-state-park/photos-and-videos/photo-gallery-8.jpg",
+            name:"Niagra Falls",
+            desc:"A famous trio of waterfalls located on the border between New York and Ontario. Over the course of thousands of years, it will slowly erode to Lake Erie, where it will cease to exist."
+        },
+        {
+            url:"https://i.natgeofe.com/k/c41b4f59-181c-4747-ad20-ef69987c8d59/eiffel-tower-night.jpg",
+            name:"The Effiel Tower",
+            desc:"A tall skyscraper in Paris that was once the tallest building built by man. It is one of the most popular tourist attractions in the world."
+        },
+        {
+            url:"https://cdn.mos.cms.futurecdn.net/TWpr5dTCno77m2J2aFgLxD-1200-80.jpg",
+            name:"Saturn",
+            desc:"The sixth and second largest planet in the Solar System. It is named by the romans and has ties with the Greek Goddess Cronus."
+        },
+        {
+            url:"https://s3.amazonaws.com/cms.ipressroom.com/173/files/20234/6463d4762cfac278e4de37ac_Megalodon+illustration+Alex+Boersma+PNAS/Megalodon+illustration+Alex+Boersma+PNAS_af2c6cef-9f5d-4dc6-b307-1f18174f7181-prv.jpg",
+            name:"Megalodon",
+            desc:"An extinct species of sharks that lived 23 to 3.6 million years ago that died off from a shift in the food chain."
+        },
+        {
+            url:"https://cdn.britannica.com/82/94382-050-20CF23DB/Great-Wall-of-China-Beijing.jpg",
+            name:"The Great Wall of China",
+            desc:"The longest structure built across centuries in ancient times to protect China from foreign invaders. It is so long that it can be seen from space."
+        }
+    ]
+
+const initialImages = initial.map((obj,index)=><Image img={obj.url} name={obj.name} desc={obj.desc} key={index} id={index}></Image>);
 
 const imageList = props.imageList;
 
@@ -14,7 +47,24 @@ const gallery = useRef(null);
 
 const scroll = (event) => {
     gallery.current.scrollLeft += event.deltaY;
+    console.log(event.deltaY);
+    // console.log(gallery.current.clientWidth);
+    // console.log(document.body.clientWidth);
 }
+
+const mouseDrag = (event) => {
+    const bodyWidth = document.body.clientWidth;
+    const mouseX = event.clientX;
+    const scrollAmount = 5;
+    if(mouseX > bodyWidth*0.05 && mouseX < bodyWidth*0.15) {
+        gallery.current.scrollLeft -= scrollAmount;
+       
+    } else if (mouseX > bodyWidth*0.9 && mouseX < bodyWidth*0.95) {
+        gallery.current.scrollLeft += scrollAmount;
+    }
+}
+
+
 
 useEffect(()=>{
     props.getImageList([...initialImages]);
@@ -22,7 +72,7 @@ useEffect(()=>{
 
 
     return(
-        <div className="gallery" onWheel={scroll} ref={gallery}>
+        <div className="gallery" onWheel={scroll} onDragOver={mouseDrag} ref={gallery}>
         {imageList}
         </div>
     );
